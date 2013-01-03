@@ -1,0 +1,201 @@
+package examples.danielstyle;
+
+import graphics.GraphicUtil;
+
+import java.awt.event.KeyEvent;
+
+import javax.media.opengl.GL2;
+import javax.media.opengl.GLAutoDrawable;
+
+
+/////////////////////////////////////////////////////////////////////////////////
+// Rotate a polygon in 2D space
+/////////////////////////////////////////////////////////////////////////////////
+public class SqRot extends base.JOGLBase {
+   
+
+   public double D2R( double degree ) {
+      return degree * Math.PI / 180.0;   
+   }
+   
+   @Override
+   public void render(GLAutoDrawable a) {
+      GL2 gl2 = a.getGL().getGL2();
+      
+      GraphicUtil.setPerspectiveView(gl2, viewWidth/viewHeight, 30.0f, 1.0f, 1000.0f); 
+      
+      /*
+      float aspect = (float)a.getWidth()/ (float)a.getHeight();      
+      gl2.glMatrixMode(GL2.GL_PROJECTION); 
+      gl2.glLoadIdentity();
+      glu.gluPerspective(30.0f, aspect, 1.0, 600.0);
+      gl2.glMatrixMode(GL2.GL_MODELVIEW);
+      gl2.glLoadIdentity();      
+      
+      this.basicClear(gl2);
+      */
+      
+      
+      
+      gl2.glTranslatef(0, 0, -290f);
+      
+      gl2.glRotated(current*2, xvec, yvec, zvec);
+      
+      gl2.glDisable(GL2.GL_TEXTURE_2D);
+      double alpha = 0; 
+      if (this.blendMode == 0) {
+         gl2.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);   
+         alpha = 0.75;
+      } else {
+         gl2.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE);   
+         alpha = 0.35;
+      }
+      
+         
+      zpos = 0;
+      for (int idx=0; idx < current; idx++) {
+         gl2.glBegin(GL2.GL_LINES);
+         //gl2.glBegin(GL2.GL_LINE_LOOP);
+         
+         double tmp = (idx%100);
+         if (tmp > 50) tmp = 100-tmp;
+         
+         for (int i=0; i < numPoint; i++) {
+            //gl2.glColor4d((double)idx/(double)current, 1-((double)idx/(double)current), 1, 0.5);
+            
+            double c_radius1 = radius[i] + idx*d_radius[i];
+            double c_radius2 = radius[(i+1)%numPoint] + idx*d_radius[(i+1)%numPoint];
+            
+            double c_angle1 = angle[i] + idx*d_angle[i];
+            double c_angle2 = angle[(i+1)%numPoint] + idx*d_angle[(i+1)%numPoint];
+            
+            gl2.glColor4d(
+                  tmp/50.0,
+                  startingColour,
+                  //1.0-tmp/50.0,
+                  c_radius1/c_radius2,
+                  alpha);
+            
+            
+            gl2.glVertex3d( Math.cos(D2R(c_angle1))*c_radius1, Math.sin(D2R(c_angle1))*c_radius1, zpos);
+            gl2.glVertex3d( Math.cos(D2R(c_angle2))*c_radius2, Math.sin(D2R(c_angle2))*c_radius2, zpos);
+            
+            /*
+            if (c_radius1 > 150) d_radius[i] = d_radius[i]*-1;
+            if (c_radius1 < 1)   d_radius[i] = d_radius[i]*-1;
+            if (c_radius2 > 150) d_radius[(i+1)%numPoint] = d_radius[(i+1)%numPoint]*-1;
+            if (c_radius2 < 1)   d_radius[(i+1)%numPoint] = d_radius[(i+1)%numPoint]*-1;
+            */
+         }
+         gl2.glEnd();
+         zpos += 0.25;
+      }
+   
+      current++;
+      if (current >= iteration) {
+         current = 0;   
+         try {Thread.sleep(3000); } catch(Exception e) {}
+         resetStage();
+      }
+   }
+  
+   
+   @Override
+   public void init(GLAutoDrawable a) {
+      super.init(a);   
+      this.resetStage();
+      
+      GL2 gl2 = a.getGL().getGL2();
+      
+      gl2.glEnable(GL2.GL_LINE_SMOOTH);
+      gl2.glHint(GL2.GL_LINE_SMOOTH_HINT, GL2.GL_NICEST);
+      
+      gl2.glEnable(GL2.GL_BLEND);
+      //gl2.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
+      gl2.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE);
+      
+      gl2.glDisable(GL2.GL_DEPTH_TEST);
+      gl2.glDisable(GL2.GL_TEXTURE_2D);
+      
+      
+      gl2.glLineWidth(2.0f);
+   }
+   
+   
+   @Override
+   public void handleKeyPress(int key, char c) {
+      super.handleKeyPress(key, c);
+      
+      if (key == KeyEvent.VK_SPACE) {
+         this.resetStage();
+      }
+            
+      if (c == 'a') {
+         this.onlyPositiveAngle = ! this.onlyPositiveAngle;
+         this.resetStage();
+      }
+      if (c == 'b') {
+         this.blendMode ++;
+         this.blendMode %= 2;
+      }
+      
+   }
+
+   
+   
+   ////////////////////////////////////////////////////////////////////////////////
+   // Reset the vertices and rotation parameters
+   ////////////////////////////////////////////////////////////////////////////////
+   public void resetStage() {
+      numPoint = 2+(int)(Math.random()*8.0); // ensure at least 2 points
+      radius = new double[numPoint];
+      angle = new double[numPoint];
+      d_radius = new double[numPoint]; // Change in radius
+      d_angle  = new double[numPoint]; // Change in angle
+      
+      for (int i=0; i < numPoint; i++ ) {
+         radius[i] = 10.0+Math.random()*20;   
+         angle[i] = Math.random()*360;   
+         
+         d_radius[i] = Math.random()*0.5 - 0.5;
+         if (this.onlyPositiveAngle) {
+            d_angle[i] = Math.random()*2.5;
+         } else {
+            d_angle[i] = Math.random()*6 - 3.0;
+         }
+         if (d_angle[i] < 0) d_angle[i] -= 0.3;
+         else d_angle[i] += 0.3;
+      }
+      
+      current = 0;
+      startingColour = 0.3 + 0.7*Math.random();
+      zpos = 0;
+      //iteration = (int)Math.random()*150 + 150;
+      iteration = (int)Math.random()*150 + 250;
+      
+      xvec = Math.random()*2 - 1.0;
+      yvec = Math.random()*2 - 1.0;
+      zvec = Math.random()*2 - 1.0;
+   }
+   
+   
+   public int numPoint = 8;    // Number of points
+   public int iteration = 350;   // Number of iterations for the loop
+   
+   public double[] radius = new double[numPoint];
+   public double[] angle = new double[numPoint];
+   public double[] d_radius = new double[numPoint]; // Change in radius
+   public double[] d_angle  = new double[numPoint]; // Change in angle
+   
+   public double startingColour = 0.0;
+   
+   public int current=0;
+   
+   public boolean onlyPositiveAngle = false;
+   
+   public int blendMode = 0;
+   public double zpos = 0;
+   
+   public double xvec, yvec, zvec; // random rotation vectors, let the api normalize them, we just generate random numbers
+
+}
