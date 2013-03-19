@@ -17,6 +17,7 @@ import com.jogamp.opengl.util.FPSAnimator;
 import examples.Basic;
 import examples.Clock;
 import examples.ImageLoader;
+import examples.combine.AnnotateProgram;
 import examples.danielstyle.Particle;
 import examples.filters.Blur;
 import examples.filters.Bright;
@@ -44,6 +45,7 @@ public class PresentationWindow implements KeyListener, MouseListener {
       
       p.progList.add( new Clock());
       p.progList.add( new Particle());
+      p.progList.add( new AnnotateProgram());
       
       
       p.run("test", 800, 800);
@@ -109,7 +111,10 @@ public class PresentationWindow implements KeyListener, MouseListener {
       } else if (e.getKeyCode() == KeyEvent.VK_LEFT){
          prevProg(); return;    
       }
-      prog.handleKeyPress( e.getKeyCode(), e.getKeyChar() );
+      
+
+      //prog.handleKeyPress( e.getKeyCode(), e.getKeyChar() );
+      prog.handleKeyPress( e.getKeyCode(), (char)e.getKeyCode() );
    }
 
    @Override

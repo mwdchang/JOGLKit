@@ -94,7 +94,7 @@ public class SqRot extends base.JOGLBase {
       current++;
       if (current >= iteration) {
          current = 0;   
-         try {Thread.sleep(3000); } catch(Exception e) {}
+         if (doPause == true) try {Thread.sleep(3000); } catch(Exception e) {}
          resetStage();
       }
    }
@@ -130,11 +130,11 @@ public class SqRot extends base.JOGLBase {
          this.resetStage();
       }
             
-      if (c == 'a') {
+      if (c == 'a' || c == 'A') {
          this.onlyPositiveAngle = ! this.onlyPositiveAngle;
          this.resetStage();
       }
-      if (c == 'b') {
+      if (c == 'b' || c == 'B') {
          this.blendMode ++;
          this.blendMode %= 2;
       }
@@ -195,6 +195,8 @@ public class SqRot extends base.JOGLBase {
    
    public int blendMode = 0;
    public double zpos = 0;
+   
+   public boolean doPause = true;
    
    public double xvec, yvec, zvec; // random rotation vectors, let the api normalize them, we just generate random numbers
 

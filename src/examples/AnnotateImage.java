@@ -2,36 +2,36 @@ package examples;
 
 import graphics.DCTriple;
 import graphics.DrawUtil;
-import graphics.GraphicUtil;
 
 import java.util.Vector;
 
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 
-import base.JOGLBase;
 
 
-
-public class Annotate extends JOGLBase {
+public class AnnotateImage extends ImageLoader{
    
-   public Annotate() {
+   public AnnotateImage() {
+      fileName = "C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg";
    }
-   public Annotate(String file) {
+   public AnnotateImage(String file) {
+      fileName = file;
    }
    
    
    public void render(GLAutoDrawable a) {
       GL2 gl2 = a.getGL().getGL2();
-      GraphicUtil.setOrthonormalView(gl2, 0, viewWidth, 0, viewHeight, -10, 10);
       
       gl2.glColor4d(1.0, 1.0, 1.0, 1.0);
+      super.render(a);     
       
       
+      gl2.glDisable(GL2.GL_TEXTURE_2D);
       gl2.glDisable(GL2.GL_DEPTH_TEST);
       gl2.glEnable(GL2.GL_BLEND);
       gl2.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
-      gl2.glColor4d(1.0, 0.0, 0.0, 1.0);
+      gl2.glColor4d(1.0, 0.0, 0.0, 0.5);
       gl2.glLineWidth(3.0f);
       
       
@@ -70,8 +70,8 @@ public class Annotate extends JOGLBase {
    }
    
    public void handleKeyPress(int key, char c) {
-      if (c == 'r' || c == 'R') {
-         System.out.println("Reset pressed...");
+      super.handleKeyPress(key, c);
+      if (c == 'r') {
          marks.clear();   
          annotation.clear();
       }
