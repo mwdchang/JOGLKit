@@ -35,7 +35,8 @@ public class Clock extends JOGLBase {
    public void render(GLAutoDrawable g) {
       GL2 gl2 = g.getGL().getGL2();
       
-      GraphicUtil.setPerspectiveView(gl2, (float)viewHeight/(float)viewWidth, 30.0f, 1.0f, 1000.0f, new float[]{0,0,60}, new float[]{0,0,0}, new float[]{0,1,0});
+      //GraphicUtil.setPerspectiveView(gl2, (float)viewHeight/(float)viewWidth, 30.0f, 1.0f, 1000.0f, new float[]{0,0,60}, new float[]{0,0,0}, new float[]{0,1,0});
+      GraphicUtil.setPerspectiveView(gl2, (float)viewWidth/(float)viewHeight, 30.0f, 1.0f, 1000.0f, new float[]{0,0,60}, new float[]{0,0,0}, new float[]{0,1,0});
       
       
       int hour   = Calendar.getInstance().get(Calendar.HOUR);

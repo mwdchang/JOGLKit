@@ -43,9 +43,12 @@ public class PresentationWindow implements KeyListener, MouseListener {
       }
       */
       
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide1.PNG"));
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide2.PNG"));
       p.progList.add( new Clock());
       p.progList.add( new Particle());
       p.progList.add( new AnnotateProgram());
+      
       
       
       p.run("test", 800, 800);
@@ -79,6 +82,8 @@ public class PresentationWindow implements KeyListener, MouseListener {
       window.addMouseListener(this);
       window.requestFocus();
       
+      window.setUndecorated(true);
+      window.setFullscreen(true);
      
       
       FPSAnimator animator = new FPSAnimator( window, 500 );
