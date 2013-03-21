@@ -19,12 +19,13 @@ import base.JOGLBase;
 ////////////////////////////////////////////////////////////////////////////////
 public class Sobel extends JOGLBase {
    
+   public int textureID = -1;
    public Texture texture;
    public ShaderObj shader;
    public int vao;
    public float threshold = 2.0f;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg");
+   public File image = new File("C:\\Users\\Daniel\\dropbox\\temp\\Toolkit\\IMG_0917.jpg");
    
 
    @Override
@@ -55,10 +56,15 @@ public class Sobel extends JOGLBase {
          
          // Get the texture binded to a target
          gl2.glActiveTexture(GL2.GL_TEXTURE0);
-         texture.enable(gl2);
-         texture.bind(gl2);
-         shader.setUniform1i(gl2, "tex", 0);
-         texture.disable(gl2);
+         if (textureID > 0) {
+            gl2.glBindTexture(GL2.GL_TEXTURE_2D, textureID);
+            shader.setUniform1i(gl2, "tex", 0);
+         } else {
+            texture.enable(gl2);
+            texture.bind(gl2);
+            shader.setUniform1i(gl2, "tex", 0);
+            texture.disable(gl2);
+         }
          
          gl2.glDrawArrays(GL2.GL_QUADS, 0, 4);
       shader.unbind(gl2);
@@ -77,7 +83,7 @@ public class Sobel extends JOGLBase {
       
       
       shader = new ShaderObj();
-      shader.createShader(gl2, "src\\shader\\vert_sobel.glsl", GL2.GL_VERTEX_SHADER);
+      shader.createShader(gl2, "src\\shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
       shader.createShader(gl2, "src\\shader\\frag_sobel.glsl", GL2.GL_FRAGMENT_SHADER);
       shader.createProgram(gl2);
       shader.linkProgram(gl2);

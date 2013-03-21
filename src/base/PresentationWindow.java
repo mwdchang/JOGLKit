@@ -18,6 +18,7 @@ import examples.Basic;
 import examples.Clock;
 import examples.ImageLoader;
 import examples.combine.AnnotateProgram;
+import examples.combine.FilterProgram;
 import examples.danielstyle.Particle;
 import examples.filters.Blur;
 import examples.filters.Bright;
@@ -43,11 +44,15 @@ public class PresentationWindow implements KeyListener, MouseListener {
       }
       */
       
-      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide1.PNG"));
-      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide2.PNG"));
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide1.PNG", true));
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide2.PNG", true));
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide3.PNG", true));
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide4.PNG", true));
       p.progList.add( new Clock());
       p.progList.add( new Particle());
+      p.progList.add( new FilterProgram("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide5.PNG"));
       p.progList.add( new AnnotateProgram());
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide6.PNG", true));
       
       
       
@@ -96,6 +101,7 @@ public class PresentationWindow implements KeyListener, MouseListener {
       
       window.removeGLEventListener(prog);
       prog = progList.elementAt(progIndex);
+      prog.exit();
       window.addGLEventListener(prog);
    }
    
@@ -104,6 +110,7 @@ public class PresentationWindow implements KeyListener, MouseListener {
       if (progIndex < 0) progIndex = 0;
       window.removeGLEventListener(prog);
       prog = progList.elementAt(progIndex);
+      prog.exit();
       window.addGLEventListener(prog);
    }
    
@@ -112,8 +119,10 @@ public class PresentationWindow implements KeyListener, MouseListener {
    @Override
    public void keyPressed(KeyEvent e) {
       if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+         prog.exit();
          nextProg(); return;    
       } else if (e.getKeyCode() == KeyEvent.VK_LEFT){
+         prog.exit();
          prevProg(); return;    
       }
       

@@ -16,12 +16,13 @@ import base.JOGLBase;
 
 public class Bright extends JOGLBase {
 
+   public int textureID = -1;
    public Texture texture;
    public ShaderObj shader;
    public int vao;
    public float threshold = 0.0f;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg");
+   public File image = new File("C:\\Users\\Daniel\\dropbox\\temp\\Toolkit\\IMG_0917.jpg");
    
    public long counter = 0;
 
@@ -36,7 +37,7 @@ public class Bright extends JOGLBase {
       
       counter++;
       
-      threshold = (float)Math.abs(Math.sin( 3.14*counter / 180.0f));
+      //threshold = (float)Math.abs(Math.sin( 3.14*counter / 180.0f));
       
       
       //gl2.glTranslated(-10, -10,  -40);
@@ -56,10 +57,15 @@ public class Bright extends JOGLBase {
          
          // Get the texture binded to a target
          gl2.glActiveTexture(GL2.GL_TEXTURE0);
-         texture.enable(gl2);
-         texture.bind(gl2);
-         shader.setUniform1i(gl2, "tex", 0);
-         texture.disable(gl2);
+         if (textureID > 0) {
+            gl2.glBindTexture(GL2.GL_TEXTURE_2D, textureID);
+            shader.setUniform1i(gl2, "tex", 0);
+         } else {
+            texture.enable(gl2);
+            texture.bind(gl2);
+            shader.setUniform1i(gl2, "tex", 0);
+            texture.disable(gl2);
+         }
          
          
          gl2.glDrawArrays(GL2.GL_QUADS, 0, 4);
@@ -79,7 +85,7 @@ public class Bright extends JOGLBase {
       
       
       shader = new ShaderObj();
-      shader.createShader(gl2, "src\\shader\\vert_bright.glsl", GL2.GL_VERTEX_SHADER);
+      shader.createShader(gl2, "src\\shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
       shader.createShader(gl2, "src\\shader\\frag_bright.glsl", GL2.GL_FRAGMENT_SHADER);
       shader.createProgram(gl2);
       shader.linkProgram(gl2);

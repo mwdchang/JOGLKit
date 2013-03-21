@@ -24,14 +24,37 @@ public class ImageLoader extends JOGLBase {
    public ImageLoader(String file) {
       fileName = file;
    }
+   public ImageLoader(String file, boolean doTransition) {
+      fileName = file;
+      useTransition = doTransition;
+   }
+   
+   public float tx = 1;
+   public boolean useTransition = false;
+   
+   public void exit() {
+      System.out.println("in exit " + fileName);
+      tx = 0;
+   }
    
    @Override
    public void render(GLAutoDrawable a) {
       GL2 gl2 = a.getGL().getGL2();
-      GraphicUtil.setOrthonormalView(gl2, 0, viewWidth, 0, viewHeight, -10, 10);
+      if (useTransition) {
+         tx+=20;
+         if (tx < viewWidth)
+            GraphicUtil.setOrthonormalView(gl2, 0, tx, 0, viewHeight, -10, 10);
+         else 
+            GraphicUtil.setOrthonormalView(gl2, 0, viewWidth, 0, viewHeight, -10, 10);
+      } else {
+         GraphicUtil.setOrthonormalView(gl2, 0, viewWidth, 0, viewHeight, -10, 10);
+      }
       
+      gl2.glColor4d(1, 1, 1, 1);
       gl2.glEnable(GL2.GL_TEXTURE_2D);
+      gl2.glActiveTexture(GL2.GL_TEXTURE0);
       texture.enable(gl2);
+      texture.bind(gl2);
       gl2.glBegin(GL2.GL_QUADS);
          if (needToFlipCoord) {
             gl2.glTexCoord2d(0, 1); gl2.glVertex2d(0, 0);
