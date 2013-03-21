@@ -23,15 +23,17 @@ public class Segment extends JOGLBase {
    public int vao;
    public float threshold = 1.0f;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg");
+   public File image = new File("C:\\Users\\Daniel\\Dropbox\\temp\\Toolkit\\IMG_0917.jpg");
    public FrameBuffer2 clock = new FrameBuffer2();
    
+   public Segment(String fname) {
+      image = new File(fname);   
+   }
 
    @Override
    public void render(GLAutoDrawable a) {
       GL2 gl2 = a.getGL().getGL2();
       
-      gl2.glViewport(0, 0, 800, 800);
       //gl2.glViewport(200, 200, 300, 300);
       
       if (reload) { 
@@ -51,7 +53,6 @@ public class Segment extends JOGLBase {
          shader.setUniform4x4(gl2, "projection_matrix", buffer);
          gl2.glGetFloatv(GL2.GL_MODELVIEW_MATRIX, buffer, 0);
          shader.setUniform4x4(gl2, "modelview_matrix", buffer);       
-         
          shader.setUniform1i(gl2, "mx", this.posX);
          shader.setUniform1i(gl2, "my", this.posY);
          
@@ -66,11 +67,12 @@ public class Segment extends JOGLBase {
       shader.unbind(gl2);
       gl2.glBindVertexArray(0);
       
-      
+      /* 
       gl2.glViewport(clock.viewX, clock.viewY, clock.viewWidth, clock.viewHeight); 
       gl2.glDisable(GL2.GL_TEXTURE_2D);
       gl2.glDisable(GL2.GL_DEPTH_TEST);
       clock.render(a);
+      */
    }
    
    

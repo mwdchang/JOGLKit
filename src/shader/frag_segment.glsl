@@ -30,7 +30,7 @@ void main() {
 
    float dist = distance( gl_FragCoord.xy, vec2(mx, my)); 
 
-   outColour.rgb *= (1.0-dist/300.0);
+   outColour.rgb *= (1.0-dist/200.0);
    
 
 /*

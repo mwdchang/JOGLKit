@@ -51,13 +51,13 @@ public class FilterProgram extends JOGLBase {
       loader.init(g);
       
       bright= new Bright();
-      bright.setView(100, 300, 300, 300);
+      bright.setView(50, 250, 250, 250);
       
       sobel = new Sobel();
-      sobel.setView(400, 300, 300, 300);
+      sobel.setView(520, 250, 250, 250);
       
       brightSobel = new BrightSobel();
-      brightSobel.setView(700, 300, 300, 300);
+      brightSobel.setView(950, 250, 250, 250);
       
       sobel.init(g);
       bright.init(g);

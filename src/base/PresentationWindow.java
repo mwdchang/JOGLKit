@@ -18,6 +18,7 @@ import examples.Basic;
 import examples.Clock;
 import examples.ImageLoader;
 import examples.combine.AnnotateProgram;
+import examples.combine.CombineDemo;
 import examples.combine.FilterProgram;
 import examples.danielstyle.Particle;
 import examples.filters.Blur;
@@ -50,9 +51,10 @@ public class PresentationWindow implements KeyListener, MouseListener {
       p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide4.PNG", true));
       p.progList.add( new Clock());
       p.progList.add( new Particle());
+      p.progList.add( new CombineDemo("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide6.PNG"));
       p.progList.add( new FilterProgram("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide5.PNG"));
       p.progList.add( new AnnotateProgram());
-      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide6.PNG", true));
+      p.progList.add( new ImageLoader("C:\\Users\\daniel\\Dropbox\\temp\\Toolkit\\Slide7.PNG", true));
       
       
       

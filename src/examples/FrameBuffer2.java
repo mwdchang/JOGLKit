@@ -156,7 +156,7 @@ public class FrameBuffer2 extends JOGLBase {
    public ShaderObj shaderBright;
    public int vaoSobel;
    public int vaoBright;
-   public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_5399.jpg");
+   public File image = new File("C:\\Users\\Daniel\\DropBox\\temp\\Toolkit\\cap.PNG");
    public boolean reload = false;
    public Texture texture;
    public float thresholdBright = 0;;

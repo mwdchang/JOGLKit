@@ -22,7 +22,7 @@ public class Blur extends JOGLBase {
    public int threshold = 1;
    public int texture1D;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg");
+   public File image = new File("C:\\Users\\Daniel\\dropbox\\temp\\Toolkit\\IMG_0917.jpg");
    
 
    @Override
