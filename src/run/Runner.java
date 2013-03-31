@@ -9,6 +9,7 @@ import examples.combine.AnnotateProgram;
 import examples.combine.CombineDemo;
 import examples.combine.FilterProgram;
 import examples.danielstyle.Particle;
+import examples.danielstyle.Polaroid;
 import examples.danielstyle.SqRot;
 import examples.filters.Blur;
 import examples.filters.BrightSobel;
@@ -25,7 +26,7 @@ public class Runner {
       //base.setProgram(new CombineDemo());
       //base.setProgram(new FilterProgram("C:\\Users\\Daniel\\Dropbox\\temp\\Toolkit\\Slide5.PNG"));
       //base.setProgram(new SequenceChart());
-      //base.setProgram( new Blur() );
+      base.setProgram( new Polaroid() );
       //base.setProgram(new BrightSobel());
       //base.setProgram(new Annotate("C:\\Users\\daniel\\Pictures\\New Folder\\seminar_DNPR\\illusion.PNG"));
       base.run("Demo Runner", 800, 800);
