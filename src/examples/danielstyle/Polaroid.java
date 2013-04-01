@@ -109,8 +109,8 @@ public class Polaroid extends JOGLBase {
       needToFlipCoord = texture.getMustFlipVertically();
       
       shader = new ShaderObj();
-      shader.createShader(gl2, "src\\shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
-      shader.createShader(gl2, "src\\shader\\frag_blur.glsl", GL2.GL_FRAGMENT_SHADER);
+      shader.createShader(gl2, "shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
+      shader.createShader(gl2, "shader\\frag_blur.glsl", GL2.GL_FRAGMENT_SHADER);
       shader.createProgram(gl2);
       shader.linkProgram(gl2);
       shader.bindFragColour(gl2, "outColour");  
