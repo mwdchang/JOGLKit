@@ -88,6 +88,7 @@ public class NEWTWindow implements KeyListener, MouseListener {
 
    @Override
    public void mousePressed(MouseEvent arg0) {
+      prog.handleMouseDown();
    }
 
    @Override

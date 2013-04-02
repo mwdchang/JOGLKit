@@ -102,6 +102,9 @@ public abstract class JOGLBase implements GLEventListener {
    public void handleMouseUp() {
    }
    
+   public void handleMouseDown() {
+   }
+   
    public void handleMouseDrag(int mouseX, int mouseY) {
       oldPosX = posX;
       oldPosY = posY;

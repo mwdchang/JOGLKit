@@ -109,6 +109,7 @@ public class AWTWindow implements KeyListener, MouseListener, MouseMotionListene
 
    @Override
    public void mousePressed(MouseEvent arg0) {
+      prog.handleMouseDown();
    }
 
    @Override
