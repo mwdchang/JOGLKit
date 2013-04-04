@@ -24,7 +24,7 @@ public class Polaroid extends JOGLBase {
    }
    
    public Texture texture;
-   public String fileName = "C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg";
+   public String fileName = "img\\IMG_0917.jpg";
    public boolean needToFlipCoord = false;   
 
    public float tX = 300;
