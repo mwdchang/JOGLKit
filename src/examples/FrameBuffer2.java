@@ -98,8 +98,8 @@ public class FrameBuffer2 extends JOGLBase {
       fbt1.init(gl2, viewWidth, viewHeight);
       
       shaderSobel = new ShaderObj();
-      shaderSobel.createShader(gl2, "src\\shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
-      shaderSobel.createShader(gl2, "src\\shader\\frag_sobel.glsl", GL2.GL_FRAGMENT_SHADER);
+      shaderSobel.createShader(gl2, "shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
+      shaderSobel.createShader(gl2, "shader\\frag_sobel.glsl", GL2.GL_FRAGMENT_SHADER);
       shaderSobel.createProgram(gl2);
       shaderSobel.linkProgram(gl2);
       shaderSobel.bindFragColour(gl2, "outColour");        
@@ -108,8 +108,8 @@ public class FrameBuffer2 extends JOGLBase {
       
       texture = GraphicUtil.loadTexture(gl2, image.getAbsolutePath());
       shaderBright = new ShaderObj();
-      shaderBright.createShader(gl2, "src\\shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
-      shaderBright.createShader(gl2, "src\\shader\\frag_bright.glsl", GL2.GL_FRAGMENT_SHADER);
+      shaderBright.createShader(gl2, "shader\\vert_imageProcessing.glsl", GL2.GL_VERTEX_SHADER);
+      shaderBright.createShader(gl2, "shader\\frag_bright.glsl", GL2.GL_FRAGMENT_SHADER);
       shaderBright.createProgram(gl2);
       shaderBright.linkProgram(gl2);
       shaderBright.bindFragColour(gl2, "outColour");      

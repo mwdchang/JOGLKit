@@ -75,8 +75,8 @@ public class Plasma extends JOGLBase {
       
       // Initialize the plasma shader
       shader = new ShaderObj();
-      shader.createShader(gl2, "src\\Shader\\vert_plasma.glsl", GL2.GL_VERTEX_SHADER);
-      shader.createShader(gl2, "src\\Shader\\frag_plasma.glsl", GL2.GL_FRAGMENT_SHADER);
+      shader.createShader(gl2, "shader\\vert_plasma.glsl", GL2.GL_VERTEX_SHADER);
+      shader.createShader(gl2, "shader\\frag_plasma.glsl", GL2.GL_FRAGMENT_SHADER);
       shader.createProgram(gl2);
       shader.linkProgram(gl2);      
       

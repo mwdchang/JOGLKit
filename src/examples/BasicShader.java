@@ -44,8 +44,8 @@ public class BasicShader extends JOGLBase {
       GL2 gl2 = a.getGL().getGL2();
       
       
-      shader.createShader(gl2, "src\\shader\\vert_pass_thru.glsl", GL2.GL_VERTEX_SHADER);
-      shader.createShader(gl2, "src\\shader\\frag_pass_thru.glsl", GL2.GL_FRAGMENT_SHADER);
+      shader.createShader(gl2, "shader\\vert_pass_thru.glsl", GL2.GL_VERTEX_SHADER);
+      shader.createShader(gl2, "shader\\frag_pass_thru.glsl", GL2.GL_FRAGMENT_SHADER);
       shader.createProgram(gl2);
       shader.linkProgram(gl2);
       shader.bindFragColour(gl2, "outColour");
