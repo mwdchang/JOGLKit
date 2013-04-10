@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 
 import com.jogamp.opengl.util.texture.Texture;
 
+import base.Config;
 import base.JOGLBase;
 
 public class Blur extends JOGLBase {
@@ -22,7 +23,7 @@ public class Blur extends JOGLBase {
    public int threshold = 1;
    public int texture1D;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\dropbox\\temp\\Toolkit\\IMG_0917.jpg");
+   public File image = new File(Config.SAMPLE_IMAGE);
    
 
    @Override

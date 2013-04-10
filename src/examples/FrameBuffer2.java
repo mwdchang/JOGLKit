@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 
 import com.jogamp.opengl.util.texture.Texture;
 
+import base.Config;
 import base.JOGLBase;
 
 public class FrameBuffer2 extends JOGLBase {
@@ -156,7 +157,7 @@ public class FrameBuffer2 extends JOGLBase {
    public ShaderObj shaderBright;
    public int vaoSobel;
    public int vaoBright;
-   public File image = new File("C:\\Users\\Daniel\\DropBox\\temp\\Toolkit\\cap.PNG");
+   public File image = new File( Config.SAMPLE_IMAGE );
    public boolean reload = false;
    public Texture texture;
    public float thresholdBright = 0;;

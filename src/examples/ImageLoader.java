@@ -7,6 +7,7 @@ import javax.media.opengl.GLAutoDrawable;
 
 import com.jogamp.opengl.util.texture.Texture;
 
+import base.Config;
 import base.JOGLBase;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -15,11 +16,10 @@ import base.JOGLBase;
 public class ImageLoader extends JOGLBase {
    
    public Texture texture;
-   public String fileName = "C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg";
+   public String fileName = Config.SAMPLE_IMAGE;
    public boolean needToFlipCoord = false;
 
    public ImageLoader() {
-      fileName = "C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg";
    }
    public ImageLoader(String file) {
       fileName = file;

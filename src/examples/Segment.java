@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 
 import com.jogamp.opengl.util.texture.Texture;
 
+import base.Config;
 import base.JOGLBase;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +24,7 @@ public class Segment extends JOGLBase {
    public int vao;
    public float threshold = 1.0f;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\Dropbox\\temp\\Toolkit\\IMG_0917.jpg");
+   public File image = new File(Config.SAMPLE_IMAGE);
    public FrameBuffer2 clock = new FrameBuffer2();
    
    public Segment(String fname) {

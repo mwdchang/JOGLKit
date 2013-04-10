@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 
 import com.jogamp.opengl.util.texture.Texture;
 
+import base.Config;
 import base.JOGLBase;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,8 @@ public class Sepia extends JOGLBase {
    public int vao;
    public float threshold = 1.0f;
    public boolean reload = false;
-   public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg");
+   public File image = new File(Config.SAMPLE_IMAGE);
+   //public File image = new File("C:\\Users\\Daniel\\Pictures\\IMG_0917.jpg");
    
 
    @Override

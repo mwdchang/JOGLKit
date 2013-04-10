@@ -21,6 +21,7 @@ import examples.danielstyle.SqRot;
 import examples.filters.Blur;
 import examples.filters.BrightSobel;
 import examples.filters.DepthShader;
+import examples.filters.Sepia;
 
 ////////////////////////////////////////////////////////////////////////////////
 // A basic bootstrapper to load up JOGL demos
@@ -38,7 +39,7 @@ public class Runner {
 //      } catch (Exception e) { e.printStackTrace(); }
       
       AWTWindow base = new AWTWindow();
-      //base.setProgram(new Annotate());
+      base.setProgram(new Sepia());
       //base.setProgram(new CombineDemo());
       //base.setProgram(new FilterProgram("C:\\Users\\Daniel\\Dropbox\\temp\\Toolkit\\Slide5.PNG"));
       //base.setProgram(new SequenceChart());
@@ -48,8 +49,8 @@ public class Runner {
       //base.run("Demo Runner", 800, 800);
       
       try {
-      base.setProgram( (JOGLBase)Class.forName(args[0]).newInstance() );
-      base.run("Demo Runner", 800, 800);
+         //base.setProgram( (JOGLBase)Class.forName(args[0]).newInstance() );
+         base.run("Demo Runner", 800, 800);
       } catch (Exception e) {}
       
    }
